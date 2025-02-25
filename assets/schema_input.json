@@ -15,12 +15,11 @@
                     "id"
                 ]
             },
-            "fastq_1": {
+            "study_id": {
                 "type": "string",
-                "format": "file-path",
                 "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^GCST\\d+",
+                "errorMessage": "GWAS Catalog studyId must follow the pattern 'GCST\\d+'"
             },
             "fastq_2": {
                 "type": "string",
