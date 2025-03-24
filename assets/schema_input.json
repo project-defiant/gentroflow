@@ -1,37 +1,165 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/PROJECT-DEFIANT/gentroflow/main/assets/schema_input.json",
+    "$id": "https://raw.githubusercontent.com/PROJECT-DEFIANT/gentroflow/dev/assets/schema_input.json",
     "title": "PROJECT-DEFIANT/gentroflow pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {
         "type": "object",
         "properties": {
-            "summary_statistics_path": {
-                "type": "file-path",
-                "pattern": "^\\S+$",
-                "errorMessage": "Sample name must be provided and cannot contain spaces",
+            "dateAddedToCatalog": {
+                "type": "string",
+                "format": "date",
+                "meta": [
+                    "date_added"
+                ]
+            },
+            "pubmedId": {
+                "type": "string",
+                "format": "^\\d+",
+                "meta": [
+                    "pubmed_id"
+                ]
+            },
+            "firstAuthor": {
+                "type": "string",
+                "format": "^\\S+ \\S{1}%",
+                "meta": [
+                    "first_author"
+                ]
+            },
+            "publicationDate": {
+                "type": "string",
+                "format": "date",
+                "meta": [
+                    "publication_date"
+                ]
+            },
+            "publicationJournal": {
+                "type": "string",
+                "meta": [
+                    "publication_journal"
+                ]
+            },
+            "publicationName": {
+                "type": "string",
+                "meta": [
+                    "publication_name"
+                ]
+            },
+            "phenotype": {
+                "type": "string",
+                "meta": [
+                    "phenotype"
+                ]
+            },
+            "initialSampleSize": {
+                "type": "string",
+                "meta": [
+                    "initial_sample_size"
+                ]
+            },
+            "replicationSampleSize": {
+                "type": "string",
+                "meta": [
+                    "replication_sample_size"
+                ]
+            },
+            "platform": {
+                "type": "string",
+                "pattern": "^(Illumina|Affymetrix).*$",
+                "errorMessage": "GWAS Catalog platform must be either 'Illumina' or 'Affymetrix'",
+                "meta": [
+                    "platform"
+                ]
+            },
+            "mappedTrait": {
+                "type": "string",
+                "meta": [
+                    "mapped_trait"
+                ]
+            },
+            "mappedTraitURI": {
+                "type": "string",
+                "pattern": "^http.*$",
+                "meta": [
+                    "mapped_trait_uri"
+                ]
+            },
+            "studyAccession": {
+                "type": "string",
+                "pattern": "^GCST\\d+",
+                "errorMessage": "GWAS Catalog studyId must follow the pattern 'GCST\\d+'",
                 "meta": [
                     "id"
                 ]
             },
-            "study_id": {
+            "genotypingTechnology": {
                 "type": "string",
-                "exists": true,
-                "pattern": "^GCST\\d+",
-                "errorMessage": "GWAS Catalog studyId must follow the pattern 'GCST\\d+'"
+                "pattern": "^(Genome-wide genotyping array|Targeted genotyping array|Sequencing).*$",
+                "meta": [
+                    "genotyping_technology"
+                ]
             },
-            "fastq_2": {
+            "submissionDate": {
                 "type": "string",
-                "format": "file-path",
-                "exists": true,
-                "pattern": "^\\S+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "format": "date",
+                "meta": [
+                    "submission_date"
+                ]
+            },
+            "statisticalModel": {
+                "type": "string",
+                "meta": [
+                    "statistical_model"
+                ]
+            },
+            "backgroundTrait": {
+                "type": "string",
+                "meta": [
+                    "background_trait"
+                ]
+            },
+            "mappedBackgroundTrait": {
+                "type": "string",
+                "meta": [
+                    "mapped_background_trait"
+                ]
+            },
+            "mappedBackgroundTraitURI": {
+                "type": "string",
+                "meta": [
+                    "mapped_background_trait_uri"
+                ]
+            },
+            "cohort": {
+                "type": "string",
+                "meta": [
+                    "cohort"
+                ]
+            },
+            "fullSummaryStatistics": {
+                "type": "boolean",
+                "meta": [
+                    "sumstat_available"
+                ]
+            },
+            "summaryStatisticsLocation": {
+                "type": "file-path",
+                "pattern": "^\\S+$",
+                "meta": [
+                    "sumstat_path"
+                ]
+            },
+            "gxe": {
+                "type": "boolean",
+                "meta": [
+                    "gxe"
+                ]
             }
         },
         "required": [
-            "sample",
-            "fastq_1"
+            "studyAccession"
         ]
     }
 }
