@@ -8,3 +8,5 @@ testing*
 *.pyc
 null/
 outputs
+.nextflow.log*
+.venv
