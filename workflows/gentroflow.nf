@@ -19,6 +19,7 @@ workflow GENTROFLOW {
 
     take:
     ch_samplesheet // channel: samplesheet read in from --input
+    ch_versions    // channel: software version
     main:
 
     ch_versions = Channel.empty()

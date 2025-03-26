@@ -16,36 +16,13 @@
 include { GENTROFLOW  } from './workflows/gentroflow'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_gentroflow_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_gentroflow_pipeline'
+include { samplesheetToList } from 'plugin/nf-schema'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    NAMED WORKFLOWS FOR PIPELINE
+    WORKFLOWS FOR PIPELINE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-//
-// WORKFLOW: Run main analysis pipeline depending on type of input
-//
-workflow PROJECTDEFIANT_GENTROFLOW {
-
-    take:
-    samplesheet // channel: samplesheet read in from --input
-
-    main:
-
-    //
-    // WORKFLOW: Run pipeline
-    //
-    GENTROFLOW (
-        samplesheet
-    )
-}
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    RUN MAIN WORKFLOW
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-*/
 
 workflow {
 
@@ -54,25 +31,19 @@ workflow {
     PIPELINE_INITIALISATION (
         params.version,
         params.validate_params,
-        params.monochrome_logs,
         args,
         params.outdir,
-        params.input
     )
+    samplesheet = samplesheetToList(params.input, "${projectDir}/assets/schema_input.json")
+    ch_samplesheet = Channel.fromList(samplesheet)
+    ch_versions = Channel.empty()
 
     //
     // WORKFLOW: Run main workflow
     //
-    PROJECTDEFIANT_GENTROFLOW (
-        PIPELINE_INITIALISATION.out.samplesheet
-    )
-    //
-    // SUBWORKFLOW: Run completion tasks
-    //
-    PIPELINE_COMPLETION (
-        params.outdir,
-        params.monochrome_logs,
-    )
+    GENTROFLOW (ch_samplesheet, ch_versions)
+
+    PIPELINE_COMPLETION ( params.monochrome_logs )
 }
 
 /*
