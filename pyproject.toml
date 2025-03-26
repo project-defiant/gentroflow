@@ -1,0 +1,9 @@
+[project]
+name = "gentroflow"
+version = "0.1.0"
+description = "Nextflow pipeline for running harmonisation & fine-mapping using Gentropy"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "nf-core>=3.2.0",
+]
