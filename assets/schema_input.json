@@ -15,7 +15,10 @@
                 ]
             },
             "pubmedId": {
-                "type": "string",
+                "type": [
+                    "string",
+                    "integer"
+                ],
                 "format": "^\\d+",
                 "meta": [
                     "pubmed_id"
@@ -145,7 +148,8 @@
                 ]
             },
             "summaryStatisticsLocation": {
-                "type": "file-path",
+                "type": "string",
+                "format": "file-path",
                 "pattern": "^\\S+$",
                 "meta": [
                     "sumstat_path"
