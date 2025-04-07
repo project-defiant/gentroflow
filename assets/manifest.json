@@ -1,0 +1,56 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/PROJECT-DEFIANT/gentroflow/dev/assets/manifest.json",
+    "title": "PROJECT-DEFIANT/gentroflow pipeline - manifest schema",
+    "description": "Schema for the file provided with params.manifest",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "study": {
+                "type": "string",
+                "pattern": "^GCST\\d+",
+                "errorMessage": "GWAS Catalog studyId must follow the pattern 'GCST\\d+'",
+                "meta": [
+                    "id"
+                ]
+            },
+            "rawSumstatPath": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "meta": [
+                    "rawSumstatPath"
+                ]
+            },
+            "harmonisedSumstatPath": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "meta": [
+                    "harmonisedSumstatPath"
+                ]
+            },
+            "qcPath": {
+                "type": "string",
+                "pattern": "^\\S+$",
+                "meta": [
+                    "qcPath"
+                ]
+            },
+            "isHarmonised": {
+                "type": "boolean",
+                "meta": [
+                    "isHarmonised"
+                ]
+            },
+            "qcPerformed": {
+                "type": "boolean",
+                "meta": [
+                    "qcPerformed"
+                ]
+            }
+        },
+        "required": [
+            "studyAccession"
+        ]
+    }
+}
