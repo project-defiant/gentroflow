@@ -17,24 +17,15 @@
             },
             "rawSumstatPath": {
                 "type": "string",
-                "pattern": "^\\S+$",
-                "meta": [
-                    "rawSumstatPath"
-                ]
+                "pattern": "^\\S+$"
             },
             "harmonisedSumstatPath": {
                 "type": "string",
-                "pattern": "^\\S+$",
-                "meta": [
-                    "harmonisedSumstatPath"
-                ]
+                "pattern": "^\\S+$"
             },
             "qcPath": {
                 "type": "string",
-                "pattern": "^\\S+$",
-                "meta": [
-                    "qcPath"
-                ]
+                "pattern": "^\\S+$"
             },
             "isHarmonised": {
                 "type": "boolean",
@@ -50,7 +41,12 @@
             }
         },
         "required": [
-            "studyAccession"
+            "study",
+            "rawSumstatPath",
+            "harmonisedSumstatPath",
+            "qcPath",
+            "isHarmonised",
+            "qcPerformed"
         ]
     }
 }
