@@ -18,35 +18,11 @@
             "rawSumstatPath": {
                 "type": "string",
                 "pattern": "^\\S+$"
-            },
-            "harmonisedSumstatPath": {
-                "type": "string",
-                "pattern": "^\\S+$"
-            },
-            "qcPath": {
-                "type": "string",
-                "pattern": "^\\S+$"
-            },
-            "isHarmonised": {
-                "type": "boolean",
-                "meta": [
-                    "isHarmonised"
-                ]
-            },
-            "qcPerformed": {
-                "type": "boolean",
-                "meta": [
-                    "qcPerformed"
-                ]
             }
-        },
-        "required": [
-            "study",
-            "rawSumstatPath",
-            "harmonisedSumstatPath",
-            "qcPath",
-            "isHarmonised",
-            "qcPerformed"
-        ]
-    }
+        }
+    },
+    "required": [
+        "study",
+        "rawSumstatPath"
+    ]
 }
